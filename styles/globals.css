@@ -1,5 +1,13 @@
+/* Custom Properties */
+
+:root {
+  --blanco: #ffffff;
+  --morado-primario: #915480;
+}
+
 html,
 body {
+  background-color: var(--morado-primario);
   padding: 0;
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
@@ -13,4 +21,19 @@ a {
 
 * {
   box-sizing: border-box;
+}
+
+/* Utilities */
+
+.bg-bazapp {
+  background-color: var(--morado-primario);
+}
+
+.container-form {
+  max-width: 1020px;
+  margin: 0 auto;
+}
+
+.mt-navbar {
+  margin-top: 8rem;
 }
