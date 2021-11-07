@@ -1,10 +1,39 @@
+import React, { useState } from "react";
+import Layout from "../components/layouts/Layout"; 
+import Categorias from "../components/Categorias";
 import styled from "@emotion/styled";
-import { FireContext } from "../../fire";
+import { FireContext } from "../fire";
 import { useContext } from "react";
 import Router from "next/router";
 
 const AgregarProducto = () => {
-    return ( 
+
+    const [fileurl, setFileUrl] = useState("https://mdbootstrap.com/img/Photos/Others/placeholder.jpg"); //aqui pocemos poner el que está por feault
+
+    function prevIMG(input){
+        const imagenfile = input.target.files[0];
+        const imageUrl = URL.createObjectURL(imagenfile);
+        console.log(imageUrl);
+        setFileUrl(imageUrl)
+      }
+
+    //arreglo de categorias
+    const TiposCategorias = [{id:1,titulo:"Accesorios"}
+                            ,{id:2,titulo:"Bolsas"}
+                            ,{id:3,titulo:"Calzado"}
+                            ,{id:4,titulo:"Chamarras"}
+                            ,{id:5,titulo:"Pantalones"}
+                            ,{id:6,titulo:"Sacos y buzos"}
+                            ,{id:7,titulo:"tops"}
+                            ,{id:8,titulo:"Vestidos"}
+                            ,{id:9,titulo:"Caballero"}
+                            ,{id:10,titulo:"Dama"}
+                            ,{id:11,titulo:"Infantes"}];
+
+    return (
+        <div className="mt-nvar">
+        <Layout/>
+        
         <div className="container w-75 bg-white mt-5 rounded shadow">
         <div className="row align-items-stretch mb-3 abs-center">
             <div className="col p-5  rounded-end">
@@ -29,29 +58,11 @@ const AgregarProducto = () => {
                     </div>
                 </div>
                 <p>Categorias</p>
-                <div className="">
-                   
-                    <div className="form-check me-2 mt-1">
-                        <input className="form-check-input" type="checkbox" value="" id="dama" name="dama"/>
-                        <label className="form-check-label" htmlFor="dama">
-                            Dama
-                        </label>
-                    </div>
-                    <div className="form-check me-2 mt-1">
-                        <input className="form-check-input" type="checkbox" value="" name="caballero" id="caballero" />
-                        <label className="form-check-label" htmlFor="caballero">
-                            Caballero
-                        </label>
-                    </div>
-                    <div className="form-check me-2 mt-1">
-                        <input className="form-check-input" type="checkbox" name="nino" value="" id="nino" />
-                        <label className="form-check-label" htmlFor="nino">
-                            Niño
-                        </label>
-                    </div>
-                </div>
+                <Categorias cat={TiposCategorias}/>
+                
+                
                 <div className="text-center">
-                    <button type="button" className="mt-3 btn bg-bazapp"> <img src="/mas.png" className="bg-mas"/> Guardar</button>
+                    <button type="button" className="mt-3 btn bg-bazapp text-white"> <img src="/mas.png" className="bg-mas"/> Guardar</button>
                 </div>
                 
             </form>
@@ -59,21 +70,21 @@ const AgregarProducto = () => {
             <div className="col align-items-stretch  abs-center">
                 <div className="file-field">
                     <div className="z-depth-1-half mb-4">
-                    <img src="https://mdbootstrap.com/img/Photos/Others/placeholder.jpg" className="img-fluid"
+                    <img src={fileurl} id="previsualizar" className="img-fluid"
                         alt="example placeholder"/>
                     </div>
                     <div className="d-flex justify-content-center">
                     <div className="btn btn-mdb-color btn-rounded float-left">
                         <p>Eligen una foto del producto</p>
-                        <input type="file"/>
+                        <input type="file" className='form-control' name="imagen" accept="image/*" onChange={prevIMG}/>
                     </div>
                     </div>
                 </div>
-                
             </div>
             
 
         </div>
+      </div>
       </div>
      );
 }
