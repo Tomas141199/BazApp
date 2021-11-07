@@ -10,6 +10,8 @@ const AgregarProducto = () => {
 
     const [fileurl, setFileUrl] = useState("https://mdbootstrap.com/img/Photos/Others/placeholder.jpg"); //aqui pocemos poner el que está por feault
 
+    const [categorias,setCategorias] = useState([]);
+
     function prevIMG(input){
         const imagenfile = input.target.files[0];
         const imageUrl = URL.createObjectURL(imagenfile);
@@ -58,8 +60,8 @@ const AgregarProducto = () => {
                     </div>
                 </div>
                 <p>Categorias</p>
-                <Categorias cat={TiposCategorias}/>
-                
+
+                <Categorias cat={TiposCategorias} setCategorias={setCategorias}/>
                 
                 <div className="text-center">
                     <button type="button" className="mt-3 btn bg-bazapp text-white"> <img src="/mas.png" className="bg-mas"/> Guardar</button>
