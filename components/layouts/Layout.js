@@ -1,10 +1,14 @@
 import Header from "./Header";
+import AgregarProducto from "./AgregarProducto";
 
 const Layout = (props) => {
   return (
     <>
       <Header />
-      <main>{props.children}</main>
+      <main>{props.children}
+      <AgregarProducto/>
+      </main>
+      
     </>
   );
 };

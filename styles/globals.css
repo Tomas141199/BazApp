@@ -37,3 +37,30 @@ a {
 .mt-navbar {
   margin-top: 8rem;
 }
+
+.abs-center {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 65vh;
+  margin-top: 15vh;
+}
+
+input[type=text]:focus{
+  outline: none;      /* Remove default outline and use border or box-shadow */
+  box-shadow: 0 0 0 2px #915480; /* Full freedom. (works also with border-radius) */
+}
+
+textarea:focus{
+  outline: none;
+  background-color: var(--morado-primario);
+  box-shadow: 0 0 0 2px #915480; /* Full freedom. (works also with border-radius) */
+}
+
+.titulo_morado{
+  color: var(--morado-primario);
+}
+
+.bg-mas{
+  width: 15px;
+}
