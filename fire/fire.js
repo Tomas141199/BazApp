@@ -71,7 +71,14 @@ class Fire {
       console.error("Error adding document: ", e);
     }
   }
+
+  async publicar(nombre,precio,talla,descripcion,categories){
+    alert('aqui me quede master en el archivo fire.js')
+  }
+
 }
+
+
 
 const fire = new Fire();
 

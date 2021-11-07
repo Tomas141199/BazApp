@@ -1,15 +1,52 @@
 import React, { useState } from "react";
 import Layout from "../components/layouts/Layout";
 import Categorias from "../components/Categorias";
-import styled from "@emotion/styled";
+import useValidacion from "../hooks/useValidacion";
+import validarPublicacion from "../validacion/crearPublicacion";
 import { FireContext } from "../fire";
 import { useContext } from "react";
+import Error from "../components/Error";
 import Router from "next/router";
 
 const AgregarProducto = () => {
+  //state incial
+  const INITIAL_STATE = {
+    nombre:"",
+    precio:"",
+    talla:"",
+    descripcion:"",
+    categorias:"",
+    foto:""
+  };
+
+  //State de la pagina
+  const [error, setError] = useState(false);
+
+  const { fire } = useContext(FireContext);
+
+  const { valores, errores, handleChange, handleSubmit} = 
+        useValidacion(INITIAL_STATE,validarPublicacion,crearPublicacion);
+
   const [fileurl, setFileUrl] = useState(
     "https://mdbootstrap.com/img/Photos/Others/placeholder.jpg"
   ); //aqui pocemos poner el que está por feault
+
+  //datos para crear publicación
+  const {nombre,precio,talla,descripcion,categories} = valores;
+
+  async function crearPublicacion() {
+    
+    try {
+      //crearPublicacion
+      await fire.publicar(nombre,precio,talla,descripcion,categories);
+      //alert('ya entraste')
+      //Redirigir al usuario al inicio
+      //Router.push("/");
+    } catch (error) {
+      console.error("Hubo un error al crear la punlicacion", error.message);
+      setError(error.message);
+    }
+  }
 
   const [categorias, setCategorias] = useState([]);
 
@@ -45,7 +82,7 @@ const AgregarProducto = () => {
             <h3 className="my-3 text-center titulo_morado">
               ¿Qué quieres vender?
             </h3>
-            <form>
+            <form onSubmit={handleSubmit}>
               <div className="form-group">
                 <label htmlFor="nombre">Nombre</label>
                 <input
@@ -53,9 +90,11 @@ const AgregarProducto = () => {
                   className="form-control"
                   id="nombre"
                   name="nombre"
-                  aria-describedby="emailHelp"
+                  onChange={handleChange}
                   placeholder="Producto"
+                  
                 />
+                {errores.nombre && <Error message={errores.nombre} />}
               </div>
               <div className="row mt-3 ">
                 <div className="col-md-6">
@@ -68,7 +107,9 @@ const AgregarProducto = () => {
                     id="precio"
                     name="precio"
                     placeholder="$0.000"
+                    onChange={handleChange}
                   />
+                  {errores.precio && <Error message={errores.precio} />}
                 </div>
                 <div className="col-md-6">
                   <label htmlFor="talla" className="form-label">
@@ -78,8 +119,11 @@ const AgregarProducto = () => {
                     type="text"
                     className="form-control"
                     id="talla"
+                    name="talla"
                     placeholder="CH"
+                    onChange={handleChange}
                   />
+                  {errores.talla && <Error message={errores.talla} />}
                 </div>
                 <div className="mb-3">
                   <label htmlFor="descripcion" className="form-label">
@@ -90,7 +134,9 @@ const AgregarProducto = () => {
                     id="descripcion"
                     name="descripcion"
                     rows="3"
+                    onChange={handleChange}
                   ></textarea>
+                  {errores.descripcion && <Error message={errores.descripcion} />}
                 </div>
               </div>
               <p>Categorias</p>
@@ -100,10 +146,12 @@ const AgregarProducto = () => {
                 setCategorias={setCategorias}
                 categories={categorias}
               />
+              {errores.categorias && <Error message={errores.categorias} />}
 
+              <input type="hidden"/>
               <div className="text-center">
-                <button type="button" className="mt-3 btn bg-bazapp text-white">
-                  <span className="fs-5 font-weight-bold">&#43;</span>
+                <button type="submit" className="mt-3 btn bg-bazapp text-white">
+                  <span className="fs-5 font-weight-bold">&#43; </span>
                   Guardar
                 </button>
               </div>
@@ -125,10 +173,12 @@ const AgregarProducto = () => {
                   <input
                     type="file"
                     className="form-control"
-                    name="imagen"
+                    name="foto"
                     accept="image/*"
-                    onChange={prevIMG}
+                    onChange={handleChange}
+                    onInput={prevIMG}
                   />
+                  {errores.foto && <Error message={errores.foto} />}
                 </div>
               </div>
             </div>

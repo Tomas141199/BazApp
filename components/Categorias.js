@@ -1,4 +1,5 @@
 const Categorias = ({ cat, setCategorias, categories }) => {
+  
   const seleccionar = (e) => {
     if (e.target.classList.contains("linea-input")) {
       e.target.classList.remove("linea-input");

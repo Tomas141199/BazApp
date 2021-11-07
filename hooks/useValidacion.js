@@ -9,6 +9,8 @@ const useValidacion = (stateInicial, validar, fn) => {
   const [errores, setErrores] = useState({});
   const [submitForm, setSubmitForm] = useState(false);
 
+  
+
   //Se ejecuta cada vez que el valor de submitForm cambie
   useEffect(() => {
     if (submitForm) {
