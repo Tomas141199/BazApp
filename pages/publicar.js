@@ -207,7 +207,7 @@ const AgregarProducto = () => {
                 setCategorias={setCategorias}
                 categories={categorias}
               />
-              {errores.categorias && <Error message={errores.categorias} />}
+              {categorias==""? <Error message="Selecciona por lo menos una categoría"/> : null}
 
               <input type="hidden" />
               <div className="text-center">
