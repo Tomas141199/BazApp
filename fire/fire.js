@@ -71,6 +71,19 @@ class Fire {
       console.error("Error adding document: ", e);
     }
   }
+
+  async publicar(publicacion) {
+    //Obtencion de la base de datos
+    const db = getFirestore();
+    //Manejo de execepcion que inserta el documento en la coleccion publicaciones, al igual que storage
+    //No es necesario que exista la coleccion ya que si no existe firestore la crea dinamicamente e inserta el documento
+    try {
+      const docRef = await addDoc(collection(db, "productos"), publicacion);
+      console.log("Document written with ID: ", docRef.id);
+    } catch (e) {
+      console.error("Error adding document: ", e);
+    }
+  }
 }
 
 const fire = new Fire();
