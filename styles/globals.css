@@ -46,35 +46,43 @@ a {
   margin-top: 15vh;
 }
 
-input[type=text]:focus{
-  outline: none;      /* Remove default outline and use border or box-shadow */
+input[type="text"]:focus {
+  outline: none; /* Remove default outline and use border or box-shadow */
   box-shadow: 0 0 0 2px #915480; /* Full freedom. (works also with border-radius) */
 }
 
-textarea:focus{
+textarea:focus {
   outline: none;
   background-color: var(--morado-primario);
   box-shadow: 0 0 0 2px #915480; /* Full freedom. (works also with border-radius) */
 }
 
-.titulo_morado{
+.titulo_morado {
   color: var(--morado-primario);
 }
 
-.bg-mas{
+.bg-mas {
   width: 15px;
 }
 
-.linea-input{
-  outline:#915480 solid 3px;
+.linea-input {
+  outline: #915480 solid 3px;
 }
 
-.card{
+.card {
   width: 18rem;
   margin-top: 10px;
   margin-bottom: 10px;
 }
 
-.btn{
+.btn {
   margin-right: 30px;
+}
+
+.w-18 {
+  width: 18rem;
+}
+
+.text-bazapp {
+  color: var(--morado-primario);
 }
