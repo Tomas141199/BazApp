@@ -68,3 +68,13 @@ textarea:focus{
 .linea-input{
   outline:#915480 solid 3px;
 }
+
+.card{
+  width: 18rem;
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
+.btn{
+  margin-right: 30px;
+}
