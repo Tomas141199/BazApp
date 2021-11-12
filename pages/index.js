@@ -81,7 +81,7 @@ export default function Home() {
 
       <div className="container-fluid">
         {/* Grid */}
-        <div className="row vw-100 vh-100 ">
+        <div className="row vw-100 vh-100">
           {/* Col-1 */}
           <BgImagen className="col-md-8 bg-white"></BgImagen>
           {/* Col-1 */}

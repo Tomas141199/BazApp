@@ -132,10 +132,8 @@ const AgregarProducto = () => {
   }
 
   return (
-    <div className="mt-nvar">
-      <Layout />
-
-      <div className="container w-75 bg-white mt-5 rounded shadow">
+    <Layout>
+      <div className="container bg-white mt-5 rounded shadow">
         <div className="row align-items-stretch mb-3 abs-center">
           <div className="col p-5  rounded-end">
             <h3 className="my-3 text-center titulo_morado">
@@ -256,7 +254,7 @@ const AgregarProducto = () => {
           </div>
         </div>
       </div>
-    </div>
+    </Layout>
   );
 };
 

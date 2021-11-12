@@ -40,17 +40,20 @@ const Publicaciones = () => {
   }
 
   return (
-    <div className="mt-navbar">
-      <Layout>
-        <div className="container bg-white">
-          <div className="row gap-2">
-            {publicaciones.map((producto) => (
-              <Productos key={producto.id} producto={producto} />
-            ))}
-          </div>
+    <Layout>
+      <div className="container my-5 rounded bg-light shadow-lg">
+        <div className="row g-3 mt-5">
+          <p className="d-block fs-4 text-muted ms-3 my-3">
+            Productos en venta
+          </p>
         </div>
-      </Layout>
-    </div>
+        <div className="row hidden-md-up mt-5">
+          {publicaciones.map((producto) => (
+            <Productos key={producto.id} producto={producto} />
+          ))}
+        </div>
+      </div>
+    </Layout>
   );
 };
 
