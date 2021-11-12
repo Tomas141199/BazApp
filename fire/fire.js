@@ -17,6 +17,7 @@ class Fire {
     this.app = initializeApp(firebaseConfig);
     this.provider = new GoogleAuthProvider();
     this.auth = getAuth();
+    this.db = getFirestore();
   }
 
   async autenticar(email, password) {
