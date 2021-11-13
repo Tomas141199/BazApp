@@ -8,6 +8,7 @@ import Error from "../components/Error";
 import fire from "../fire";
 import { signInWithPopup, GoogleAuthProvider } from "firebase/auth";
 import Router from "next/router";
+import TextBazapp from "../components/layouts/TextBazapp";
 
 const BgImagen = styled.div`
   background-image: url("/inicio.png");
@@ -22,7 +23,7 @@ const BgImagen = styled.div`
 
 export default function Home() {
   //State de la pagina
-
+  const [load, setLoad] = useState(false);
   //Error al iniciar sesion
   const [error, setError] = useState(false);
 
@@ -41,8 +42,12 @@ export default function Home() {
   async function iniciarSesion() {
     try {
       await fire.autenticar(email, password);
-      console.log("logueado correctamente....");
-      Router.push("/inicio");
+      setLoad(true);
+      //Ocultar la pantalla de carga
+      setTimeout(() => {
+        //Cambio del estado
+        Router.push("/inicio");
+      }, 8000);
     } catch (error) {
       console.log(error.message);
       setError(error.message.replace("Firebase: Error", ""));
@@ -58,24 +63,21 @@ export default function Home() {
         const token = credential.accessToken;
         // La informacion del usuario logueado
         const user = result.user;
-        console.log("Logueado ", user);
         //Redireccion a la pagina de inicio
-        Router.push("/inicio");
+        setLoad(true);
+        //Ocultar la pantalla de carga
+        setTimeout(() => {
+          //Cambio del estado
+          Router.push("/inicio");
+        }, 8000);
       })
       .catch((error) => {
         // Manejo de errores
-        const errorCode = error.code;
-        const errorMessage = error.message;
-        // El correo electrónico de la cuenta del usuario utilizada.
-        const email = error.email;
-        // AuthCrendencial usada
-        const credential = GoogleAuthProvider.credentialFromError(error);
-        console.log("Error", error.message);
         setError(error.message.replace("Firebase: Error", ""));
       });
   }
 
-  return (
+  return !load ? (
     <>
       <LayoutHead />
 
@@ -87,11 +89,11 @@ export default function Home() {
           {/* Col-1 */}
 
           {/* Col-2 */}
-          <div className="col-md-4 bg-bazapp d-flex flex-column justify-content-between">
+          <div className="col-md-4 bg-bazapp-pattern d-flex flex-column justify-content-between">
             <div className="d-grid gap-2 d-md-flex justify-content-md-end mt-5">
-              <a href="!#" className="btn btn-outline-light me-md-2 mt-2">
-                Registrarse
-              </a>
+              <span className="btn btn-outline-light me-md-2 mt-2">
+                <Link href="crear-cuenta">Registrarse</Link>
+              </span>
             </div>
             <div className="container">
               <h2 className="h2 text-white mb-5">Iniciar Sesion</h2>
@@ -169,5 +171,7 @@ export default function Home() {
         </div>
       </div>
     </>
+  ) : (
+    <TextBazapp />
   );
 }
