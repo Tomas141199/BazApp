@@ -47,7 +47,7 @@ const Inicio = () => {
         <div className="row g-3 mt-5">
           <div className="dropdown">
             <p className="fs-4 text-muted ms-3 my-3 d-inline">Catálogo</p>
-            <button className="btn bg-bazapp text-white dropdown-toggle d-inline ms-3 my-3" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+            <button className="btn bg-bazapp text-white dropdown-toggle d-inline ms-5 my-3" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
               Categorías
             </button>
               <CategoriasCatalogo
