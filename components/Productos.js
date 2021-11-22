@@ -3,6 +3,7 @@ import styled from "@emotion/styled";
 import { es } from "date-fns/locale";
 import { formatDistanceToNow } from "date-fns";
 import getEstatus from "../utilities/obtenerEstatus";
+import Link from "next/link";
 //
 const ImgProducto = styled.img`
   width: 220px;
@@ -30,11 +31,12 @@ export const Productos = ({ producto }) => {
             Publicado hace:{" "}
             {formatDistanceToNow(new Date(producto.creado), { locale: es })}
           </p>
-          <a href="#" className="card-link fw-bold">
-            Detalles
-          </a>
-          <a href="#" className="card-link ms-5 fw-bold">
-            Cancelar
+          <Link href="/productos/[id]" as={`productos/${producto.id}`}>
+            <a className="card-link fw-bold">Detalles</a>
+          </Link>
+
+          <a href="#" className="btn btn-outline-danger ms-5 fw-bold">
+            Eliminar
           </a>
         </div>
       </div>

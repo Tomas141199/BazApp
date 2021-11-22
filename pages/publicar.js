@@ -58,6 +58,7 @@ const AgregarProducto = () => {
         talla,
         descripcion,
         categorias,
+        comentarios: [],
         urlImagen: fileurl,
         creado: Date.now(),
         propetario: {

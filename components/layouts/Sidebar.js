@@ -15,15 +15,20 @@ const Sidebar = () => {
 
       <ul className="list-unstyled components">
         <p className="ms-2 fw-bold text-bazapp">Mi Cuenta</p>
-        <li>
-          <a className="text-bazapp-fuerte" href="#homeSubmenu">
-            <Link href="/publicar">Publicar</Link>
-          </a>
+        <li key={"Catalogo-baz"}>
+          <Link href="/inicio">
+            <a className="text-bazapp-fuerte">Catalogo</a>
+          </Link>
         </li>
-        <li>
-          <a className="text-bazapp-fuerte">
-            <Link href="/publicaciones">Publicaciones</Link>
-          </a>
+        <li key={"Publicar-baz"}>
+          <Link href="/publicar">
+            <a className="text-bazapp-fuerte">Publicar</a>
+          </Link>
+        </li>
+        <li key={"Publicaciones-baz"}>
+          <Link href="/publicaciones">
+            <a className="text-bazapp-fuerte">Publicaciones</a>
+          </Link>
         </li>
       </ul>
     </nav>
