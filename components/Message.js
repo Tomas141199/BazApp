@@ -7,13 +7,15 @@ const Message = ({ message, usuario, vendedor }) => {
     message.usuarioId === vendedor ? (
       <span className="text-warning">★Vendedor</span>
     ) : null;
+  const photo = message.photo ? message.photo : "/user.png";
 
   return (
     <div className={`media media-chat ${propetario}`}>
-      <img className="avatar" src={message.photo} alt=".." /> {isVendedor}
+      <img className="avatar" src={photo} alt=".." /> {isVendedor}
       <div className="media-body">
         <p className="text-white">{message.mensaje}</p>
         <p className="meta text-bazapp-fuerte">
+          <span className="me-1">{message.nombre}</span>
           <time>
             Hace: {formatDistanceToNow(new Date(message.hora), { locale: es })}
           </time>

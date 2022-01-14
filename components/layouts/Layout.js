@@ -1,6 +1,5 @@
 import Header from "./Header";
 import Sidebar from "./Sidebar";
-import { useEffect } from "react";
 
 const Layout = (props) => {
   return (
@@ -11,10 +10,10 @@ const Layout = (props) => {
         {/* <!-- Page Content  --> */}
         <div id="content">
           <Header />
-
           {props.children}
         </div>
       </div>
+      <div className="overlay"></div>
     </>
   );
 };

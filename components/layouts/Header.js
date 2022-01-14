@@ -11,14 +11,22 @@ const Header = () => {
   const { usuario, fire } = useContext(FireContext);
 
   useEffect(() => {
-    let button = document.getElementById("sidebarCollapse");
-    let content = document.getElementById("content");
-    let element = document.getElementById("sidebar"); // or whatever triggers the toggle
-    button.addEventListener("click", function (e) {
-      e.preventDefault();
-      element.classList.toggle("active"); // or whate ver your active class is
-      content.classList.toggle("active"); // or whatever your active class is
-    });
+    const cargarEventos = () => {
+      let button = document.getElementById("sidebarCollapse");
+      let mask = document.querySelector(".overlay");
+      let element = document.getElementById("sidebar");
+      button.addEventListener("click", function (e) {
+        console.log("Click en el boton principal");
+        mask.classList.add("active");
+        element.classList.add("active"); // or whate ver your active class is
+      });
+
+      mask.addEventListener("click", function (e) {
+        this.classList.remove("active");
+        element.classList.remove("active"); // or whate ver your active class is
+      });
+    };
+    cargarEventos();
   }, []);
 
   async function cerrarSesion() {
@@ -27,10 +35,14 @@ const Header = () => {
   }
 
   return (
-    <nav className="navbar navbar-expand-lg navbar-light bg-light">
+    <nav className="navbar navbar-expand-lg navbar-light bg-light shadow-lg ">
       <div className="container-fluid">
         <a className="navbar-brand" href="#">
-          <button type="button" id="sidebarCollapse" className="btn btn-light">
+          <button
+            type="button"
+            id="sidebarCollapse"
+            className="btn btn-secondary"
+          >
             <span> &lang; </span>
           </button>
         </a>

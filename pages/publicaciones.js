@@ -5,7 +5,7 @@ import { useContext } from "react";
 import Productos from "../components/Productos";
 
 //Importamos una libreria que nos permite filtrar los tipos de propiedades
-import { collection, doc, getDocs, orderBy, query } from "@firebase/firestore";
+import { collection, getDocs, query, where } from "@firebase/firestore";
 
 const Publicaciones = () => {
   //State
@@ -13,12 +13,15 @@ const Publicaciones = () => {
 
   //Fire es una objeto de la clase Fire independiente de Firebase, este objeto mantiene la instancia de la aplicacion de base datos
   //y algunas funciones para hacer mas limpias algunas tareas
-  const { fire } = useContext(FireContext);
+  const { fire, usuario } = useContext(FireContext);
 
   useEffect(() => {
     const ObtenerPublicaciones = async () => {
       //Consulta Firebase
-      const q = query(collection(fire.db, "productos"));
+      const q = query(
+        collection(fire.db, "productos"),
+        where("propetario.id", "==", usuario.uid)
+      );
 
       //Snapshot
       const querySnapshot = await getDocs(q);
@@ -26,8 +29,8 @@ const Publicaciones = () => {
       //ManejarSnapShot
       ManejarSnapshot(querySnapshot);
     };
-    ObtenerPublicaciones();
-  }, []);
+    usuario && ObtenerPublicaciones();
+  }, [usuario]);
 
   function ManejarSnapshot(querySnapshot) {
     const publicacion = querySnapshot.docs.map((doc) => {
@@ -44,7 +47,9 @@ const Publicaciones = () => {
       <div className="container my-5 rounded bg-light shadow-lg">
         <div className="row g-3 mt-5">
           <p className="d-block fs-4 text-muted ms-3 my-3">
-            Productos en venta
+            {publicaciones.length === 0
+              ? "Aun no tienes publicaciones :( , comienza a publicar!!!"
+              : "Productos en venta"}
           </p>
         </div>
         <div className="row hidden-md-up mt-5">

@@ -51,10 +51,9 @@ const Producto = () => {
       };
       obtenerProducto();
     }
-    //eslint-disable-next-line
   }, [id]);
 
-  if (Object.keys(producto).length === 0 && !error) return "Cargando...";
+  if (Object.keys(producto).length === 0) return "Cargando...";
   //extraer los datos del producto
   const {
     categorias,
@@ -102,7 +101,7 @@ const Producto = () => {
             Detalles del producto
           </p>
           <div className="mt-3 row">
-            <div className="col mb-3">
+            <div className="col-md-12 col-lg-6 mb-3">
               <div className="card ml-4">
                 <ImgDetalleProducto
                   src={urlImagen}
@@ -113,7 +112,7 @@ const Producto = () => {
             </div>
 
             {/*Segundo DIV principal QUE CONTIENE LOS DATOS DEL PRODUCTO   */}
-            <div className="col mb-3">
+            <div className="col-md-12 col-lg-6 mb-3">
               <div>
                 <div className="card">
                   <div className="card-body">
@@ -157,7 +156,6 @@ const Producto = () => {
                         id="data"
                       >
                         {/* Contenedor */}
-
                         {comentarios.length === 0 ? (
                           <div className="text-center mt-5">
                             Aun no hay nada
